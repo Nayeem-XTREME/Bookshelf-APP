@@ -7,6 +7,7 @@ import Navbar from "../../Navbar/Navbar";
 export default class Signup extends Component {
   state = {
     name: "",
+    age: "",
     phone: "",
     email: "",
     password: "",
@@ -56,7 +57,21 @@ export default class Signup extends Component {
                   </div>
                 </div>
 
-                <div className="col-12">
+                <div className="col-12 col-md-6">
+                  <div className="form-group">
+                    <label>Age</label>
+                    <input
+                      name="age"
+                      type="age"
+                      className="form-control"
+                      placeholder="Enter your age"
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="col-12 col-md-6">
                   <div className="form-group">
                     <label>Phone</label>
                     <input

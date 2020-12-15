@@ -1,37 +1,38 @@
 import React, { Component } from "react";
-import styles from "./AllUser.module.css";
+import styles from "./AllBooks.module.css";
 import axios from "../../../axios-base";
 
 import Navbar from "../../Navbar/Navbar";
 
-export default class AllUsers extends Component {
+export default class AllBooks extends Component {
   state = {
-    users: [],
+    books: [],
     available: false,
   };
 
   componentDidMount = async () => {
     try {
-      const res = await axios.get("/users");
-      this.setState({ users: res.data, available: true });
+      const res = await axios.get("/books");
+      this.setState({ books: res.data, available: true });
 
-      console.log(this.state.users);
+      console.log(this.state.books);
     } catch (error) {
       console.log(error);
     }
   };
 
-  showAllUsers = () => {
+  showAllBooks = () => {
     if (this.state.available === true) {
-      const data = this.state.users;
+      const data = this.state.books;
       return data.map((x, i) => {
         return (
           <tr key={x._id}>
             <td>{i + 1}</td>
             <th>{x.name}</th>
-            <td>{x.age}</td>
-            <td>{x.phone}</td>
-            <td>{x.email}</td>
+            <td>{x.author}</td>
+            <td>{x.publication}</td>
+            <td>{x.year}</td>
+            <td>{x.owner}</td>
           </tr>
         );
       });
@@ -44,19 +45,20 @@ export default class AllUsers extends Component {
         <Navbar btn="Log in" route="/login" />
         <div className="container">
           <div className={styles.box}>
-            <h2>All Users</h2>
+            <h2>All Books</h2>
             <br />
             <table className="table table-hover">
               <thead className="thead-dark">
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Email</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Publication</th>
+                  <th scope="col">Year</th>
+                  <th scope="col">Owner ID</th>
                 </tr>
               </thead>
-              <tbody>{this.showAllUsers()}</tbody>
+              <tbody>{this.showAllBooks()}</tbody>
             </table>
           </div>
         </div>

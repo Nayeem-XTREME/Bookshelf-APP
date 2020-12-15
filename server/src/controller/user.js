@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['name', 'email', 'password', 'phone'];
+    const allowedUpdates = ['name', 'email', 'password', 'phone', 'age'];
     const isValid = updates.every((x) => {
         return allowedUpdates.includes(x);
     })
