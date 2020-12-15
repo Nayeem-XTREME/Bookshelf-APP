@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import axios from "../../../axios-base";
 import styles from "./Login.module.css";
+
+import { connect } from 'react-redux';
+import { login } from '../../../store/actions/_action'
 
 import Navbar from "../../Navbar/Navbar";
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     email: "",
     password: "",
@@ -18,17 +20,7 @@ export default class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(this.state);
-
-    axios.post("/users/login", this.state)
-      .then((res) => {
-        console.log(res.data);
-        this.props.history.push('/profile');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.login(this.state);
   };
 
   render() {
@@ -83,3 +75,11 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (data) => dispatch( login(data) )
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
