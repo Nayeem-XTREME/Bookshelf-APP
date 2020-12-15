@@ -27,6 +27,7 @@ export default class Signup extends Component {
     axios.post("/users/signup", this.state)
       .then((res) => {
         console.log(res.data);
+        this.props.history.push('/profile')
       })
       .catch((err) => {
         console.log(err);

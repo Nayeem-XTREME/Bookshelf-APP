@@ -1,5 +1,11 @@
 const initialState = {
-    count: 200
+    user: {
+        name: "",
+        age: "",
+        email: "",
+        phone: "",
+        token: ""
+    }
 }
 
 const rootReducer = (state = initialState, action) => {
