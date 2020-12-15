@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const connection = require('./src/db/connect');
 
 const userRouter = require('./src/routers/user');
@@ -10,6 +11,7 @@ const port = process.env.PORT;
 
 const json = express.json();
 app.use(json);
+app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/users', userRouter);

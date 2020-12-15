@@ -9,8 +9,8 @@ const Navbar = (props) => {
         
         <div className="navbar-nav ml-auto">
             <NavLink className="btn btn-primary m-2" to={props.route}>{props.btn}</NavLink>
-            <NavLink className="btn btn-outline-success m-2" to="/books">Get all books</NavLink>
             <NavLink className="btn btn-outline-info m-2" to="/users">Get all users</NavLink>
+            <NavLink className="btn btn-outline-success m-2" to="/books">Get all books</NavLink>
         </div>
       </div>
     </nav>
