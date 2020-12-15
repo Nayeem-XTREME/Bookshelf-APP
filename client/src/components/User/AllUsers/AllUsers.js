@@ -3,6 +3,7 @@ import styles from "./AllUser.module.css";
 import axios from "../../../axios-base";
 
 import Navbar from "../../Navbar/Navbar";
+import Spinner from "../../Spinner/Spinner";
 
 export default class AllUsers extends Component {
   state = {
@@ -39,7 +40,7 @@ export default class AllUsers extends Component {
   };
 
   render() {
-    return (
+    let mainContent = (
       <div>
         <Navbar btn="Log in" route="/login" />
         <div className="container">
@@ -62,5 +63,11 @@ export default class AllUsers extends Component {
         </div>
       </div>
     );
+
+    if (this.state.available === false) {
+      mainContent = <Spinner />;
+    }
+
+    return <div>{mainContent}</div>;
   }
 }
