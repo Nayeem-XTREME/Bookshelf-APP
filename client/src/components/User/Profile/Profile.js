@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from './Profile.module.css'
 import { connect } from 'react-redux'
+import { NavLink } from "react-router-dom";
 
 import Navbar from "../../Navbar/Navbar"
 import axios from '../../../axios-base'
@@ -45,8 +46,8 @@ class Profile extends Component {
             <th>{x.name}</th>
             <td>{x.author}</td>
             <td>{x.publication}</td>
-            <td><button onClick={() => this.handleEdit(x._id)} className="btn btn-info pl-3 pr-3 pt-0 pb-0"><ion-icon name="eye-outline"></ion-icon></button></td>
-            <td><button onClick={() => this.handleRemove(x._id)} className="btn btn-danger pl-3 pr-3 pt-0 pb-0"><ion-icon name="trash-outline"></ion-icon></button></td>
+            <td><button onClick={() => this.handleEdit(x._id)} className="btn btn-info pl-3 pr-3 pt-1 pb-0"><ion-icon name="eye-outline"></ion-icon></button></td>
+            <td><button onClick={() => this.handleRemove(x._id)} className="btn btn-danger pl-3 pr-3 pt-1 pb-0"><ion-icon name="trash-outline"></ion-icon></button></td>
           </tr>
         );
       });
@@ -62,7 +63,16 @@ class Profile extends Component {
           <div className={styles.box}>
             <h3>Welcome!</h3>
             <hr/>
-            <h2>Book List</h2>
+            <div className="row">
+              <div className="col">
+                <h2>Book List</h2>
+              </div>
+              <div className="col">
+                <div className={styles.book}>
+                  <NavLink className="btn btn-success" to="/add">ADD NEW BOOK</NavLink>
+                </div>
+              </div>
+            </div>
             <div className="table-responsive">
               <table className="table table-hover">
                 <thead className="thead-dark">

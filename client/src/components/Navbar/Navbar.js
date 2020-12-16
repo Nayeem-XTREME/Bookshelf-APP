@@ -44,7 +44,7 @@ const Navbar = (props) => {
   }
 
   return (
-    <nav className="shadow navbar navbar-expand navbar-light bg-light">
+    <nav className="shadow navbar navbar-expand fixed-top navbar-light bg-light">
       <div className="container">
         <NavLink className="navbar-brand" to="/">Bookshelf-App</NavLink>
         <div className="navbar-nav ml-auto">{navElement}</div>

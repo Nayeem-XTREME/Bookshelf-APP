@@ -1,5 +1,5 @@
 .box {
-    margin-top: 30px;
+    margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -9,6 +9,14 @@
 }
 
 .box h2 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
+}
+
+.box h3 {
+    text-align: center;
+}
+
+.book {
+    text-align: right;
 }
