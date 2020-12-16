@@ -33,6 +33,19 @@ export const signup = user => {
     }
 }
 
+export const logout = () => {
+    return async dispatch => {
+        try {
+            localStorage.removeItem("token");
+            dispatch(logoutUser());
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+}
+
 const loginUser = data => ({
     type: 'LOGIN_USER',
     payload: data
@@ -41,4 +54,8 @@ const loginUser = data => ({
 const signupUser = data => ({
     type: 'SIGNUP_USER',
     payload: data
+})
+
+const logoutUser = () => ({
+    type: 'LOGOUT_USER'
 })

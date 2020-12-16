@@ -1,5 +1,10 @@
 const initialState = {
-    user: {}
+    user: {
+        name: null,
+        age: null,
+        phone: null,
+        email: null
+    }
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -15,6 +20,17 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            }
+
+        case 'LOGOUT_USER':
+            return {
+                ...state,
+                user: {
+                    name: null,
+                    age: null,
+                    phone: null,
+                    email: null
+                }
             }
         default:
             return state;

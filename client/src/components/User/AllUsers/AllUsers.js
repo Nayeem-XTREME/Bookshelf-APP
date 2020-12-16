@@ -43,22 +43,24 @@ export default class AllUsers extends Component {
     let mainContent = (
       <div>
         <Navbar btn="Log in" route="/login" />
-        <div className="container">
+        <div>
           <div className={styles.box}>
             <h2>All Users</h2>
             <br />
-            <table className="table table-hover">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Email</th>
-                </tr>
-              </thead>
-              <tbody>{this.showAllUsers()}</tbody>
-            </table>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>{this.showAllUsers()}</tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

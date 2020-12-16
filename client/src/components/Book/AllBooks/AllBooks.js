@@ -33,7 +33,6 @@ export default class AllBooks extends Component {
             <td>{x.author}</td>
             <td>{x.publication}</td>
             <td>{x.year}</td>
-            <td>{x.owner}</td>
           </tr>
         );
       });
@@ -44,23 +43,24 @@ export default class AllBooks extends Component {
     let mainContent = (
       <div>
         <Navbar btn="Log in" route="/login" />
-        <div className="container">
+        <div>
           <div className={styles.box}>
             <h2>All Books</h2>
             <br />
-            <table className="table table-hover">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Publication</th>
-                  <th scope="col">Year</th>
-                  <th scope="col">Owner ID</th>
-                </tr>
-              </thead>
-              <tbody>{this.showAllBooks()}</tbody>
-            </table>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publication</th>
+                    <th scope="col">Year</th>
+                  </tr>
+                </thead>
+                <tbody>{this.showAllBooks()}</tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
