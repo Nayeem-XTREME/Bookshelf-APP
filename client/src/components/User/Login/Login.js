@@ -20,7 +20,11 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state);
+    this.props.login(this.state)
+      .then((success) => {
+        if (success) this.props.history.push('/profile');
+        else alert('Invalid email or password');
+      });
   };
 
   render() {

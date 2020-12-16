@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import axios from "../../../axios-base";
 import styles from "./Signup.module.css";
+
+import { connect } from 'react-redux';
+import { signup } from '../../../store/actions/_action'
 
 import Navbar from "../../Navbar/Navbar";
 
-export default class Signup extends Component {
+class Signup extends Component {
   state = {
     name: "",
     age: "",
@@ -21,17 +23,11 @@ export default class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(this.state);
-
-    axios.post("/users/signup", this.state)
-      .then((res) => {
-        console.log(res.data);
-        this.props.history.push('/profile')
+    this.props.signup(this.state)
+      .then((success) => {
+        if (success) this.props.history.push('/profile');
+        else alert('Failed to create new user');
       })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   render() {
@@ -127,3 +123,11 @@ export default class Signup extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signup: (data) => dispatch( signup(data) )
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Signup);

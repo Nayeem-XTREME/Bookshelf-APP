@@ -10,6 +10,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload
             }
+
+        case 'SIGNUP_USER':
+            return {
+                ...state,
+                user: action.payload
+            }
         default:
             return state;
     }
