@@ -28,7 +28,6 @@ const Navbar = (props) => {
     navElement = (
       <div>
         <NavLink className="btn btn-primary m-2" to={route}>{btn}</NavLink>
-        {/* <NavLink className="btn btn-primary m-2" to="/signup">Sign up</NavLink> */}
         <NavLink className="btn btn-outline-info m-2" to="/users">All users</NavLink>
         <NavLink className="btn btn-outline-success m-2" to="/books">All books</NavLink>
       </div>
@@ -38,7 +37,7 @@ const Navbar = (props) => {
   if (props.user.email !== null) {
     navElement = (
       <div>
-        {props.user.name}
+        <button className="btn">Hello {props.user.name}!</button>
         <button onClick={handleLogout} className="btn btn-danger m-2">Log out</button>
       </div>
     )
