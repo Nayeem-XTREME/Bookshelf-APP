@@ -20,6 +20,11 @@ class Signup extends Component {
     )
   };
 
+  componentDidMount = () => {
+    if (localStorage.getItem("token"))
+      this.props.history.push('/profile');
+  }
+
   handleChange = (e) => {
     const { user } = this.state;  
     const currentState = user;

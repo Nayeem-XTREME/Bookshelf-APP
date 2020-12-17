@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
 import Login from "./components/User/Login/Login";
 import Signup from "./components/User/Signup/Signup";
 import AllUsers from "./components/User/AllUsers/AllUsers";
@@ -8,7 +9,7 @@ import Profile from "./components/User/Profile/Profile"
 import AddBook from "./components/Book/AddBook/AddBook"
 import EditBook from "./components/Book/EditBook/EdiBook"
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Switch>
@@ -17,12 +18,21 @@ function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/users" component={AllUsers} />
         <Route path="/books" component={AllBooks} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/add" component={AddBook} />
+
+        {/* Preventing unauthorized access */}
+        {localStorage.getItem("token") ? <Route path="/profile" component={Profile} /> : <Redirect to="/login"/>}
+        {localStorage.getItem("token") ? <Route path="/add" component={AddBook} /> : <Redirect to="/login"/>}
+      
         <Route path="/edit" component={EditBook} />
       </Switch>
     </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(App);
