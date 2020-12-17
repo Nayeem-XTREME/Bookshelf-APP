@@ -37,7 +37,7 @@ const Navbar = (props) => {
   if (props.user.email !== null) {
     navElement = (
       <div>
-        <button className="btn">Hello <strong>{props.user.name}</strong>!</button>
+        <NavLink to="/profile" className="btn">Hello <strong>{props.user.name}</strong>!</NavLink>
         <button onClick={handleLogout} className="btn btn-danger m-2">Log out</button>
       </div>
     )

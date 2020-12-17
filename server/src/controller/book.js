@@ -56,7 +56,7 @@ exports.addBook = async (req, res) => {
 
 exports.updateBook = async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['name', 'author', 'publication'];
+    const allowedUpdates = ['name', 'author', 'publication', 'year'];
     const isValid = updates.every((x) => {
         return allowedUpdates.includes(x);
     })

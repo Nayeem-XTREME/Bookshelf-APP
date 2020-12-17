@@ -6,6 +6,7 @@ import AllUsers from "./components/User/AllUsers/AllUsers";
 import AllBooks from "./components/Book/AllBooks/AllBooks";
 import Profile from "./components/User/Profile/Profile"
 import AddBook from "./components/Book/AddBook/AddBook"
+import EditBook from "./components/Book/EditBook/EdiBook"
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/users" component={AllUsers} />
         <Route path="/books" component={AllBooks} />
         <Route path="/profile" component={Profile} />
-        <Route path="/add" component={AddBook}/>
+        <Route path="/add" component={AddBook} />
+        <Route path="/edit" component={EditBook} />
       </Switch>
     </BrowserRouter>
   );
