@@ -37,7 +37,7 @@ const Navbar = (props) => {
   if (props.user.email !== null) {
     navElement = (
       <div>
-        <button className="btn">Hello {props.user.name}!</button>
+        <button className="btn">Hello <strong>{props.user.name}</strong>!</button>
         <button onClick={handleLogout} className="btn btn-danger m-2">Log out</button>
       </div>
     )
