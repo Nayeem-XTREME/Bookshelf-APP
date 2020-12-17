@@ -19,7 +19,18 @@ class Profile extends Component {
   }
 
   handleRemove = async (id) => {
-    console.log(id);
+    try {
+      const res = await axios.delete(`/books/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+
+      this.setState({available: false});
+      this.componentDidMount();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   componentDidMount = async () => {

@@ -39,7 +39,7 @@ class AddBook extends Component {
         <Navbar />
         <div className="container">
           <div className={styles.box}>
-            <h2>Login</h2>
+            <h2>ADD A BOOK</h2>
             <form onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="col-12">

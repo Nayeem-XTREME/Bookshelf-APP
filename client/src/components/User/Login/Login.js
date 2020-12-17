@@ -12,6 +12,12 @@ class Login extends Component {
     password: "",
   };
 
+  alertBox = (
+    <div>
+      DEFAULT
+    </div>
+  )
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -22,8 +28,15 @@ class Login extends Component {
     e.preventDefault();
     this.props.login(this.state)
       .then((success) => {
-        if (success) this.props.history.push('/profile');
-        else alert('Invalid email or password');
+        if (success) 
+          this.props.history.push('/profile');
+        else {
+          this.alertBox = (
+            <div className="alert alert-danger" role="alert">
+              Invalid email or password
+            </div>
+          )
+        }
       });
   };
 
@@ -64,6 +77,12 @@ class Login extends Component {
                       required
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-12">
+                  {this.alertBox}
                 </div>
               </div>
 
