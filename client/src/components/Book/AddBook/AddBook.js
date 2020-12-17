@@ -5,23 +5,31 @@ import axios from '../../../axios-base'
 
 class AddBook extends Component {
   state = {
-    name: "",
-    author: "",
-    publication: "",
-    year: ""
+    book: {
+      name: "",
+      author: "",
+      publication: "",
+      year: ""
+    },
+    alertBox: (
+      <div></div>
+    )
   };
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    const { book } = this.state;  
+    const currentState = book;
+    const { name, value } = e.target; 
+    currentState[name] = value;
+    
+    this.setState({ book: currentState });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     console.log(this.state, localStorage.token);
     try {
-        const res = await axios.post('/books', this.state, {
+        const res = await axios.post('/books', this.state.book, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem("token")}`
             }
@@ -30,6 +38,13 @@ class AddBook extends Component {
         this.props.history.push('/profile');
     } catch (error) {
         console.log(error);
+        this.setState({
+          alertBox: (
+            <div className="alert alert-danger" role="alert">
+              Failed to add new book
+            </div>
+          )
+        })
     }
   };
 
@@ -96,6 +111,12 @@ class AddBook extends Component {
                       required
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-12">
+                  {this.state.alertBox}
                 </div>
               </div>
 

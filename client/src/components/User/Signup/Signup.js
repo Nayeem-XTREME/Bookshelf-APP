@@ -8,25 +8,42 @@ import Navbar from "../../Navbar/Navbar";
 
 class Signup extends Component {
   state = {
-    name: "",
-    age: "",
-    phone: "",
-    email: "",
-    password: "",
+    user: {
+      name: "",
+      age: "",
+      phone: "",
+      email: "",
+      password: ""
+    },
+    alertBox: (
+      <div></div>
+    )
   };
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    const { user } = this.state;  
+    const currentState = user;
+    const { name, value } = e.target; 
+    currentState[name] = value;
+    
+    this.setState({ user: currentState });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signup(this.state)
+    this.props.signup(this.state.user)
       .then((success) => {
-        if (success) this.props.history.push('/profile');
-        else alert('Failed to create new user');
+        if (success) 
+          this.props.history.push('/profile');
+        else {
+          this.setState({
+            alertBox: (
+              <div className="alert alert-danger" role="alert">
+                Failed to create new user
+              </div>
+            )
+          })
+        }
       })
   };
 
@@ -108,6 +125,12 @@ class Signup extends Component {
                       required
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-12">
+                  {this.state.alertBox}
                 </div>
               </div>
 

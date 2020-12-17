@@ -8,34 +8,39 @@ import Navbar from "../../Navbar/Navbar";
 
 class Login extends Component {
   state = {
-    email: "",
-    password: "",
+    user: {
+      email: "",
+      password: ""
+    },
+    alertBox: (
+      <div></div>
+    )
   };
 
-  alertBox = (
-    <div>
-      DEFAULT
-    </div>
-  )
-
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    const { user } = this.state;  
+    const currentState = user;
+    const { name, value } = e.target; 
+    currentState[name] = value;
+    
+    this.setState({ user: currentState });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state)
+    console.log(this.state);
+    this.props.login(this.state.user)
       .then((success) => {
         if (success) 
           this.props.history.push('/profile');
         else {
-          this.alertBox = (
-            <div className="alert alert-danger" role="alert">
-              Invalid email or password
-            </div>
-          )
+          this.setState({
+            alertBox: (
+              <div className="alert alert-danger" role="alert">
+                Invalid email or password
+              </div>
+            )
+          })
         }
       });
   };
@@ -82,7 +87,7 @@ class Login extends Component {
 
               <div className="row">
                 <div className="col-12">
-                  {this.alertBox}
+                  {this.state.alertBox}
                 </div>
               </div>
 
