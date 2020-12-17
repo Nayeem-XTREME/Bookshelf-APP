@@ -15,8 +15,6 @@ export default class AllUsers extends Component {
     try {
       const res = await axios.get("/users");
       this.setState({ users: res.data, available: true });
-
-      console.log(this.state.users);
     } catch (error) {
       console.log(error);
     }

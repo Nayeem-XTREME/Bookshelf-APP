@@ -10,8 +10,8 @@ export const login = user => {
             localStorage.setItem("token", data.token);
             dispatch(loginUser(data.user));
             return true;
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
             return false;
         }
     }

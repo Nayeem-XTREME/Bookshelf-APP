@@ -28,7 +28,6 @@ export default class EdiBook extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.book);
 
     try {
       const res = await axios.patch(`/books/${this.props.location.state._id}`, this.state.book, {
@@ -36,7 +35,6 @@ export default class EdiBook extends Component {
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         }
       });
-      console.log(res);
       this.props.history.push('/profile');
     } catch (error) {
       console.log(error);

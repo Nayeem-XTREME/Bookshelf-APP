@@ -15,7 +15,6 @@ class Profile extends Component {
   }
 
   handleEdit = (data) => {
-    console.log(data);
     this.props.history.push({
       pathname: "/edit",
       state: data
@@ -45,7 +44,6 @@ class Profile extends Component {
         }
       });
       this.setState({books: res.data, available: true});
-      console.log(this.state.books);
     } catch (error) {
       console.log(error);
     }

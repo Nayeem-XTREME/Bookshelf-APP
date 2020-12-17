@@ -4,7 +4,6 @@ import rootReducer from './reducers/rootReducer'
 
 const saveToLocalStorage = (state) => {
     try {
-        console.log(state);
         localStorage.setItem('state', JSON.stringify(state));
     } catch (error) {
         console.log(error);

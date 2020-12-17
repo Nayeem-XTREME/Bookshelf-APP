@@ -15,8 +15,6 @@ export default class AllBooks extends Component {
     try {
       const res = await axios.get("/books");
       this.setState({ books: res.data, available: true });
-
-      console.log(this.state.books);
     } catch (error) {
       console.log(error);
     }
