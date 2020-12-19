@@ -28,7 +28,7 @@ class AddBook extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('/books', this.state.book, {
+        await axios.post('/books', this.state.book, {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem("token")}`
             }

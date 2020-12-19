@@ -78,7 +78,7 @@ class Profile extends Component {
             <hr/>
             <div className="row">
               <div className="col">
-                <h2>Book List</h2>
+                <h2>Your Book List</h2>
               </div>
               <div className="col">
                 <div className={styles.book}>
