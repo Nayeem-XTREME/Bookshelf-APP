@@ -30,7 +30,7 @@ export default class EdiBook extends Component {
     e.preventDefault();
 
     try {
-      const res = await axios.patch(`/books/${this.props.location.state._id}`, this.state.book, {
+      await axios.patch(`/books/${this.props.location.state._id}`, this.state.book, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         }

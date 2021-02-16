@@ -1,53 +1,52 @@
 import React, { Component } from "react";
-import styles from './Profile.module.css'
-import { connect } from 'react-redux'
+import styles from "./Profile.module.css";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import Navbar from "../../Navbar/Navbar"
-import axios from '../../../axios-base'
-import Spinner from '../../Spinner/Spinner'
+import Navbar from "../../Navbar/Navbar";
+import axios from "../../../axios-base";
+import Spinner from "../../Spinner/Spinner";
 
 class Profile extends Component {
-
   state = {
     books: [],
-    available: false
-  }
+    available: false,
+  };
 
-  handleEdit = (data) => {
+  handleEdit = data => {
     this.props.history.push({
       pathname: "/edit",
-      state: data
-    })
-  }
+      state: data,
+    });
+  };
 
-  handleRemove = async (id) => {
+  handleRemove = async id => {
     try {
-      const res = await axios.delete(`/books/${id}`, {
+      await axios.delete(`/books/${id}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
 
-      this.setState({available: false});
+      this.setState({ available: false });
       this.componentDidMount();
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   componentDidMount = async () => {
     try {
-      const res = await axios.get('/users/books', {
+      const res = await axios.get("/users/books", {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
-      this.setState({books: res.data, available: true});
+      this.setState({ books: res.data, available: true });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   showAllBooks = () => {
     if (this.state.available === true) {
@@ -59,8 +58,22 @@ class Profile extends Component {
             <th>{x.name}</th>
             <td>{x.author}</td>
             <td>{x.publication}</td>
-            <td><button onClick={() => this.handleEdit(x)} className="btn btn-info pl-3 pr-3 pt-1 pb-0"><ion-icon name="eye-outline"></ion-icon></button></td>
-            <td><button onClick={() => this.handleRemove(x._id)} className="btn btn-danger pl-3 pr-3 pt-1 pb-0"><ion-icon name="trash-outline"></ion-icon></button></td>
+            <td>
+              <button
+                onClick={() => this.handleEdit(x)}
+                className="btn btn-info pl-3 pr-3 pt-1 pb-0"
+              >
+                <ion-icon name="eye-outline"></ion-icon>
+              </button>
+            </td>
+            <td>
+              <button
+                onClick={() => this.handleRemove(x._id)}
+                className="btn btn-danger pl-3 pr-3 pt-1 pb-0"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+              </button>
+            </td>
           </tr>
         );
       });
@@ -68,21 +81,22 @@ class Profile extends Component {
   };
 
   render() {
-
     let mainContent = (
       <div>
         <Navbar />
         <div>
           <div className={styles.box}>
             <h3>Welcome!</h3>
-            <hr/>
+            <hr />
             <div className="row">
               <div className="col">
                 <h2>Your Book List</h2>
               </div>
               <div className="col">
                 <div className={styles.book}>
-                  <NavLink className="btn btn-success" to="/add">ADD NEW BOOK</NavLink>
+                  <NavLink className="btn btn-success" to="/add">
+                    ADD NEW BOOK
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -104,19 +118,14 @@ class Profile extends Component {
           </div>
         </div>
       </div>
-    )
+    );
 
     if (this.state.available === false) {
-      mainContent = <Spinner/>
+      mainContent = <Spinner />;
     }
 
-    return (
-      <div>
-        {mainContent}
-      </div>
-    );
+    return <div>{mainContent}</div>;
   }
-
 }
 
 export default connect()(Profile);
